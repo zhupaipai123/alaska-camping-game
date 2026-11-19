@@ -1,0 +1,67 @@
+:root { color-scheme: dark; background: #202922; font-family: system-ui, sans-serif; }
+* { box-sizing: border-box; }
+html, body { margin: 0; min-height: 100%; }
+body { min-height: 100svh; display: grid; place-items: center; overflow: hidden; }
+.game { width: min(100vw, 56.25svh); height: min(100svh, 177.7778vw); }
+.viewport { position: relative; width: 100%; height: 100%; overflow: hidden; background: #788677; }
+canvas { display: block; width: 100%; height: 100%; }
+.inventory-items { position: absolute; top: max(1rem, env(safe-area-inset-top)); right: 1rem; display: flex; gap: .35rem; }
+.inventory { border: 1px solid #f3e8cba8; border-radius: 50%; background: #263128db; width: 48px; height: 48px; display: grid; place-items: center; font-size: 24px; }
+#sound { position:absolute; top:max(1rem, env(safe-area-inset-top)); left:1rem; border-radius:999px; padding:.55rem .75rem; font:500 12px system-ui,sans-serif; }
+[hidden] { display: none !important; }
+.controls { position: absolute; left: 5%; right: 5%; bottom: max(1rem, env(safe-area-inset-bottom)); display: flex; justify-content: space-between; align-items: center; gap: .4rem; }
+.movement { display: flex; gap: .55rem; flex-shrink: 0; }
+button { touch-action: none; user-select: none; -webkit-user-select: none; cursor: pointer; color: #f2dca7; background: #30382ed9; border: 1px solid #e6cb8db5; box-shadow: 0 3px 12px #101b1570; }
+.movement button { display: grid; place-items: center; border-radius: 50%; width: clamp(48px, 13vw, 64px); height: clamp(48px, 13vw, 64px); padding: 0; }
+.movement svg { width: 25px; height: 25px; fill: none; stroke: currentColor; stroke-width: 1.3; stroke-linecap: round; stroke-linejoin: round; }
+button:active { background: #68775a; }
+button:focus-visible { outline: 3px solid #fff0a6; outline-offset: 3px; }
+#pick, #bird, #wolf, #fish, #process, #camp-action { min-height: 48px; padding: .65rem .75rem; border-radius: 999px; display: inline-flex; align-items: center; justify-content: center; gap: .3rem; white-space: nowrap; font: 500 clamp(10px, 2.8vw, 14px) system-ui, sans-serif; }
+#pick .hand, #bird .hand { font-size: 1.15rem; line-height: 1; }
+#pick:disabled { opacity: .55; }
+@media (min-width: 700px) { .viewport { border: 1px solid #b6ab87; border-radius: 12px; box-shadow: 0 18px 70px #0b100d99; } }
+
+#search-caption { position:absolute; top:12%; left:50%; transform:translateX(-50%); white-space:nowrap; color:#f8edcf; background:#263128cc; border-radius:999px; padding:.5em 1em; font-size:15px; }
+
+#camp-action { position:absolute; bottom:max(1rem, env(safe-area-inset-bottom)); right:5%; min-height:48px; padding:.65rem .85rem; border-radius:999px; }
+
+#scene { touch-action: none; }
+#camp-action { background:#30382ed9; }
+
+
+#camp-action {touch-action:manipulation;}
+#camp-action:disabled {cursor:default; opacity:.82;}
+
+#action-caption { position:absolute; left:4%; top:10%; transform:none; color:#f8edcf; text-shadow:0 1px 4px #182019; background:#263128aa; border-radius:8px; padding:.35em .7em; white-space:nowrap; font:400 12px Georgia,serif; pointer-events:none; }
+
+/* One 9:16 game rectangle, including controls, inside the device safe area. */
+html,body {width:100%;height:100%;min-height:0;}
+body {min-height:0;height:100dvh;padding:env(safe-area-inset-top) env(safe-area-inset-right) env(safe-area-inset-bottom) env(safe-area-inset-left);}
+.game {width:min(calc(100vw - env(safe-area-inset-left) - env(safe-area-inset-right)),calc((100dvh - env(safe-area-inset-top) - env(safe-area-inset-bottom))*9/16));height:auto;aspect-ratio:9/16;container-type:inline-size;}
+.viewport {aspect-ratio:9/16;border:0;border-radius:0;}
+#search-caption,#action-caption {left:4%;top:11%;transform:none;max-width:92%;white-space:normal;font:400 clamp(11px,3.2cqw,15px) Georgia,'Songti SC',serif;line-height:1.4;padding:.35em .7em;border-radius:8px;background:#263128cc;pointer-events:none;}
+#sound {top:2%;left:4%;font-size:clamp(10px,2.8cqw,13px);padding:.55em .75em;}
+.inventory-items {top:2%;right:4%;gap:1cqw;}
+.inventory {width:9cqw;height:9cqw;font-size:5cqw;}
+.controls {bottom:2%;gap:1cqw;}
+.movement {gap:1.5cqw;}
+.movement button {width:12cqw;height:12cqw;min-width:36px;min-height:36px;}
+#pick,#bird,#wolf,#fish,#process,#camp-action {font-size:clamp(10px,2.8cqw,14px);min-height:40px;}
+#camp-action {bottom:2%;max-width:92%;}
+#search-caption.rest-caption {top:72%;font-size:clamp(12px,3.4cqw,16px);}
+/* Fill the available phone viewport; preserve the scene's proportions and crop its edges. */
+.game {width:100%;height:100%;aspect-ratio:auto;}
+.viewport {width:100%;height:100%;aspect-ratio:auto;}
+canvas {object-fit:cover;}
+
+/* Wide browser windows keep the whole portrait game visible. */
+@media (min-aspect-ratio: 3/4) {
+  .game {width:min(100%, calc((100dvh - env(safe-area-inset-top) - env(safe-area-inset-bottom)) * 9 / 16)); height:auto; aspect-ratio:9/16;}
+  .viewport {width:100%;height:100%;aspect-ratio:9/16;}
+}
+
+.movement button {display:none}
+#joystick {width:23cqw;height:23cqw;max-width:100px;max-height:100px;min-width:70px;min-height:70px;border-radius:50%;border:1px solid #e6cb8db5;background:#30382e99;position:relative;touch-action:none;user-select:none}
+#joystick-knob {position:absolute;left:50%;top:50%;width:42%;height:42%;border-radius:50%;background:#e1ce9aa6;border:1px solid #f2dca7;transform:translate(-50%,-50%);pointer-events:none}
+#species-info {position:absolute;right:0;bottom:calc(100% + 12px);width:min(75vw, 310px);color:#f2dca7;background:#30382eea;border-radius:8px;padding:.65em .8em;font:500 clamp(10px,2.8cqw,14px) system-ui,sans-serif;line-height:1.55;pointer-events:none}
+#camp-action {right:5%;bottom:calc(2% + clamp(70px, 23cqw, 100px)/2);transform:translateY(50%);padding:.65rem .75rem;}

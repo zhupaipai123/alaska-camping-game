@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <script>document.documentElement.dataset.testStart=String(performance.now());</script>
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#252d26">
+  <title>阿拉斯加苔原独行</title>
+  <link rel="stylesheet" href="./style.css?v=five-edits-20261118-7">
+  <script src="./asset-map.js?v=five-edits-20261118-7"></script>
+  <script src="./motion.js" defer></script>
+  <script src="./fishing-rig.js?v=five-edits-20261118-7" defer></script>
+  <script src="./camp-audio.js?v=bedding-fish-color-20261117-1" defer></script>
+  <script src="./camp.js?v=five-edits-20261118-7" defer></script>
+  <script src="./loading.js?v=five-edits-20261118-7" defer></script>
+  <script src="./game.js?v=five-edits-20261118-7" defer></script>
+</head>
+<body>
+  <main class="game">
+    <div class="viewport">
+      <canvas id="scene" width="540" height="960" aria-label="阿拉斯加苔原独行"></canvas>
+      <button id="sound" type="button" aria-pressed="true">环境音 🔊</button>
+      <div class="inventory-items">
+        <div class="inventory" id="berry-inventory" aria-label="已拾取蓝莓" hidden><span aria-hidden="true">🫐</span></div>
+        <div class="inventory" id="bird-inventory" aria-label="已收纳雷鸟" hidden><span aria-hidden="true">🐦</span></div>
+        <div class="inventory" id="fish-inventory" aria-label="已收纳鱼" hidden><span aria-hidden="true">🐟</span></div>
+      </div>
+      <button id="camp-action" type="button" hidden>搭帐篷</button>
+      <div id="action-caption" hidden></div>
+      <div id="search-caption" hidden>寻找露营地点</div>
+      <div class="controls">
+        <div id="species-info" hidden></div>
+        <div class="movement"><div id="joystick" role="slider" tabindex="0" aria-label="拖动控制行走" aria-valuemin="-1" aria-valuemax="1" aria-valuenow="0"><div id="joystick-knob"></div></div>
+          <button id="left" type="button" aria-label="向左走"><svg aria-hidden="true" viewBox="0 0 24 24"><path d="M20 12H4m7-7-7 7 7 7"/></svg></button>
+          <button id="right" type="button" aria-label="向右走"><svg aria-hidden="true" viewBox="0 0 24 24"><path d="M4 12h16m-7-7 7 7-7 7"/></svg></button>
+        </div>
+        <button id="wolf" type="button" aria-label="发现狼" hidden><span aria-hidden="true">🐺</span><span class="wolf-label">发现狼</span></button>
+        <button id="bird" type="button" aria-label="发现阿拉斯加雷鸟" hidden><span class="hand" aria-hidden="true">🐦</span><span class="bird-label">发现阿拉斯加雷鸟</span></button>
+        <button id="fish" type="button" aria-label="钓鱼" hidden><span aria-hidden="true">🎣</span><span class="fish-label">钓鱼</span></button>
+        <button id="process" type="button" aria-label="处理猎物" hidden>处理猎物</button>
+        <button id="pick" type="button" aria-label="发现野生蓝莓" disabled><span class="hand" aria-hidden="true">✋</span><span>发现野生蓝莓</span></button>
+      </div>
+    </div>
+  </main>
+</body>
+</html>
